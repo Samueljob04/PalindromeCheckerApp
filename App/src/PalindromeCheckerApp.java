@@ -1,3 +1,5 @@
+import java.util.Scanner;
+
 public class PalindromeCheckerApp {
     
     // Method to check if a string is palindrome
@@ -34,5 +36,26 @@ public class PalindromeCheckerApp {
             System.out.println("\"" + test + "\" is " + (result ? "a palindrome" : "not a palindrome"));
         }
         System.out.println();
+        
+        // UC3: User Input Palindrome Check
+        System.out.println("--- UC3: User Input Palindrome Check ---");
+        Scanner scanner = new Scanner(System.in);
+        String choice = "y";
+        
+        while (choice.equalsIgnoreCase("y")) {
+            System.out.print("Enter a string to check if it's a palindrome: ");
+            String userInput = scanner.nextLine();
+            
+            boolean result = isPalindrome(userInput);
+            System.out.println("\"" + userInput + "\" is " + (result ? "a palindrome!" : "not a palindrome."));
+            System.out.println();
+            
+            System.out.print("Do you want to check another string? (y/n): ");
+            choice = scanner.nextLine();
+            System.out.println();
+        }
+        
+        System.out.println("Thank you for using Palindrome Checker App!");
+        scanner.close();
     }
 }
