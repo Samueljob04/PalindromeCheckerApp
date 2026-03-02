@@ -1,0 +1,22 @@
+# PalindromeCheckerApp
+
+A Java application to check if a given string is a palindrome.
+
+## Project Structure
+- **App**: Main application module containing the PalindromeCheckerApp class
+
+## Author
+Roll No: RA2411030010116
+
+## Description
+This application checks whether a given string reads the same forwards and backwards (palindrome).
+
+## How to Run
+1. Navigate to the App/src directory
+2. Compile: `javac PalindromeCheckerApp.java`
+3. Run: `java PalindromeCheckerApp`
+
+## Use Cases
+- UC1: Application Entry & Welcome Message
+- UC2: Hard Code Palindrome Check
+- UC3: User Input Palindrome Check
