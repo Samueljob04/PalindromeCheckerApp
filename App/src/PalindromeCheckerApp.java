@@ -1,9 +1,8 @@
 import java.util.Scanner;
-import java.util.Stack;
-import java.util.Queue;
+import java.util.Deque;
 import java.util.LinkedList;
 
-public class PalindromeQueueStack {
+public class PalindromeDeque {
 
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
@@ -14,24 +13,21 @@ public class PalindromeQueueStack {
         // Convert to lowercase (optional)
         input = input.toLowerCase();
 
-        Stack<Character> stack = new Stack<>();
-        Queue<Character> queue = new LinkedList<>();
+        Deque<Character> deque = new LinkedList<>();
 
-        // Insert characters into both stack and queue
+        // Insert characters into deque
         for (int i = 0; i < input.length(); i++) {
-            char ch = input.charAt(i);
-            stack.push(ch);      // LIFO
-            queue.add(ch);       // FIFO
+            deque.addLast(input.charAt(i));
         }
 
         boolean isPalindrome = true;
 
-        // Compare dequeue (queue) with pop (stack)
-        while (!stack.isEmpty() && !queue.isEmpty()) {
-            char fromStack = stack.pop();     // Last character
-            char fromQueue = queue.remove();  // First character
+        // Compare front and rear
+        while (deque.size() > 1) {
+            char front = deque.removeFirst(); // from front
+            char rear = deque.removeLast();   // from rear
 
-            if (fromStack != fromQueue) {
+            if (front != rear) {
                 isPalindrome = false;
                 break;
             }
