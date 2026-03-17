@@ -1,61 +1,44 @@
 import java.util.Scanner;
+import java.util.Deque;
+import java.util.LinkedList;
 
-public class PalindromeCheckerApp {
-    
-    // Method to check if a string is palindrome
-    public static boolean isPalindrome(String str) {
-        // Remove spaces and convert to lowercase for comparison
-        String cleanStr = str.replaceAll("\\s+", "").toLowerCase();
-        int left = 0;
-        int right = cleanStr.length() - 1;
-        
-        while (left < right) {
-            if (cleanStr.charAt(left) != cleanStr.charAt(right)) {
-                return false;
-            }
-            left++;
-            right--;
-        }
-        return true;
-    }
-    
+public class PalindromeDeque {
+
     public static void main(String[] args) {
-        // UC1: Application Entry & Welcome Message
-        System.out.println("========================================");
-        System.out.println("  Welcome to Palindrome Checker App");
-        System.out.println("========================================");
-        System.out.println("This application checks if a string is a palindrome");
-        System.out.println();
-        
-        // UC2: Hard Code Palindrome Check
-        System.out.println("--- UC2: Hard Coded Palindrome Check ---");
-        String[] testStrings = {"madam", "racecar", "hello", "level", "world", "noon"};
-        
-        for (String test : testStrings) {
-            boolean result = isPalindrome(test);
-            System.out.println("\"" + test + "\" is " + (result ? "a palindrome" : "not a palindrome"));
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("Enter a string: ");
+        String input = sc.nextLine();
+
+        // Convert to lowercase (optional)
+        input = input.toLowerCase();
+
+        Deque<Character> deque = new LinkedList<>();
+
+        // Insert characters into deque
+        for (int i = 0; i < input.length(); i++) {
+            deque.addLast(input.charAt(i));
         }
-        System.out.println();
-        
-        // UC3: User Input Palindrome Check
-        System.out.println("--- UC3: User Input Palindrome Check ---");
-        Scanner scanner = new Scanner(System.in);
-        String choice = "y";
-        
-        while (choice.equalsIgnoreCase("y")) {
-            System.out.print("Enter a string to check if it's a palindrome: ");
-            String userInput = scanner.nextLine();
-            
-            boolean result = isPalindrome(userInput);
-            System.out.println("\"" + userInput + "\" is " + (result ? "a palindrome!" : "not a palindrome."));
-            System.out.println();
-            
-            System.out.print("Do you want to check another string? (y/n): ");
-            choice = scanner.nextLine();
-            System.out.println();
+
+        boolean isPalindrome = true;
+
+        // Compare front and rear
+        while (deque.size() > 1) {
+            char front = deque.removeFirst(); // from front
+            char rear = deque.removeLast();   // from rear
+
+            if (front != rear) {
+                isPalindrome = false;
+                break;
+            }
         }
-        
-        System.out.println("Thank you for using Palindrome Checker App!");
-        scanner.close();
+
+        if (isPalindrome) {
+            System.out.println("It is a palindrome.");
+        } else {
+            System.out.println("Not a palindrome.");
+        }
+
+        sc.close();
     }
 }
